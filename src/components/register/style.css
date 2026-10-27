@@ -1,0 +1,141 @@
+.register-panel {
+    position: relative;
+    margin: auto;
+    display: flex;
+    background-color: #111111;
+    opacity: 1;
+}
+
+.register-panel__side-image {
+    width: 280px;
+    height: 560px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+}
+
+.register-panel__side-image img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: 2s cubic-bezier(.1, .7, .1, 1);
+}
+
+.register-panel__side-image svg {
+    color: white;
+    margin: auto;
+    scale: 3;
+    filter: drop-shadow(0px 0px 8px black);
+    pointer-events: none;
+}
+
+.register-panel__side-image-mask {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    box-shadow: inset 0px 0px 48px black;
+    transition: .5s;
+}
+
+.register-panel__form {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding: 56px;
+    justify-content: space-between;
+    width: 560px;
+}
+
+.register-panel__form__title h2 {
+    opacity: .33;
+    font-weight: 400;
+    margin: 0;
+}
+
+.register-panel__form__title h1 {
+    font-weight: 400;
+    margin: 0;
+}
+
+.register-panel__form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 48px;
+}
+
+.register-panel__form__fields p {
+    opacity: .33;
+    margin-bottom: 12px;
+}
+
+.register-panel__form a {
+    line-height: 1rem;
+    top: 0;
+    right: 0;
+    text-decoration: none;
+    color: white;
+    opacity: .33;
+    position: absolute;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    transition: .5s;
+    user-select: none;
+    
+}
+
+.register-panel__form a:hover {
+    opacity: 1;
+    transition: .1s;
+    text-decoration: underline;
+}
+
+.register-panel__form a:visited {
+    color: white;
+}
+
+.register-panel__form__submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.register-panel__form__submit span {
+    color: #ff4040;
+    animation: register-panel-message-fade-in .5s;
+}
+
+.register-panel__skeleton-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #111111;
+    z-index: 2;
+    animation: register-panel-mask-fade-out .5s forwards;
+}
+
+@keyframes register-panel-mask-fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+@keyframes register-panel-message-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

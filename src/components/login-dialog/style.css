@@ -1,0 +1,68 @@
+.login-dialog-container {
+    position: absolute;
+    z-index: 3;
+    top: 36px;
+    left: calc(50% - 200px);
+    width: 400px;
+    backdrop-filter: var(--backdrop-filter);
+}
+
+.login-dialog__close-button {
+    height: 24px;
+    width: 24px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+}
+
+.login-dialog__close-button .PixelyRipplePool {
+    background-color: rgba(255, 255, 255, 0);
+    transition: .5s;
+}
+
+.login-dialog__close-button:hover .PixelyRipplePool {
+    background-color: rgba(255, 255, 255, .08);
+    transition: .1s;
+}
+
+.login-dialog {
+    position: relative;
+    background-color: var(--panel);
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+}
+
+.login-dialog__message {
+    color: #E53935;
+}
+
+.login-dialog__header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.login-dialog form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (max-width: 800px) {
+    .login-dialog-container {
+        width: 400px;
+        left: calc(50% - 200px);
+    }
+}
+
+@media (max-width: 480px) {
+    .login-dialog-container {
+        width: 100%;
+        top: 72px;
+        left: 0;
+    }
+}

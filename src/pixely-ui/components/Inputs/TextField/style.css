@@ -1,0 +1,46 @@
+@layer pixely-ui {
+    .PixelyTextField {
+        box-shadow: inset 0px 0px 6px rgba(0, 0, 0, .08);
+        display: flex;
+        border: 1px solid rgba(0, 0, 0, .16);
+        box-sizing: border-box;
+        background-color: #EEE;
+        transition: border-color .3s;
+        cursor: text;
+        height: 36px;
+    }
+    
+    .PixelyTextField:hover {
+        border: 1px solid rgba(0, 0, 0, .5);
+    }
+    
+    .PixelyTextField--Focus {
+        border: 1px solid rgba(0, 0, 0, .5);
+    }
+    
+    .PixelyTextField-Input {
+        padding: 0 9px;
+        margin: auto;
+        font-size: 13px;
+        opacity: .75;
+        background-color: transparent;
+        border: none;
+        transition: opacity .3s;
+        flex-grow: 1;
+    }
+    
+    .PixelyTextField-Input::selection {
+        background-color: rgba(0, 0, 0, .75);
+        color: white;
+    }
+    
+    .PixelyTextField-Input:focus {
+        opacity: 1;
+        outline: none;
+    }
+    
+    .PixelyTextField-Input::placeholder {
+        font-style: italic;
+        opacity: .5;
+    }
+}

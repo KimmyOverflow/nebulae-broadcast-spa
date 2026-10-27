@@ -1,0 +1,62 @@
+.notification-container {
+    position: fixed;
+    z-index: 6;
+    top: 36px;
+    left: 0px;
+    height: calc(100dvh - 36px);
+    width: 300px;
+    display: flex;
+    padding: 12px;
+    flex-direction: column;
+    gap: 12px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    scrollbar-width: none;
+    pointer-events: none;
+}
+
+.notification {
+    pointer-events: all;
+    background-color: var(--panel);
+    backdrop-filter: var(--backdrop-filter);
+}
+
+.notification__main {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+}
+
+.notification__main__title {
+    opacity: .67;
+}
+
+.notification__main__content {
+
+}
+
+.notification__main__addition {
+    /* opacity: .67; */
+}
+
+.notification__countdown-container {
+    width: 100%;
+    height: 2px;
+    background-color: var(--panel);
+    overflow: hidden;
+}
+
+.notification__countdown-bar {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    opacity: .33;
+}
+
+@media (max-width: 480px) {
+    .notification-container {
+        top: 72px;
+        height: calc(100dvh - 72px);
+    }
+}

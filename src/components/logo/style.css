@@ -1,0 +1,26 @@
+.logo {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-family: var(--font-family-western);
+    font-size: var(--text-size-primary);
+    user-select: none;
+}
+
+.logo p {
+    opacity: .67;
+}
+
+.logo__image-container img {
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    transition: opacity var(--easing-standard);
+}
+
+.logo__image-container {
+    position: relative;
+    height: 24px;
+    width: 24px;
+    flex-shrink: 0;
+}

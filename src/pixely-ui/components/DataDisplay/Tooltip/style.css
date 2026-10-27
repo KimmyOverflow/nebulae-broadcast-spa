@@ -1,0 +1,30 @@
+@layer pixely-ui {
+    .PixelyTooltip-Wrapper {
+        width: fit-content;
+        height: fit-content;
+    }
+    
+    .PixelyTooltip-Container {
+        display: flex;
+        filter: drop-shadow(0px 3px 6px rgba(0, 0, 0, .16));
+    }
+    
+    .PixelyTooltip-Textbox {
+        font-size: 14px;
+        padding: 10px;
+        background-color: white;
+    }
+    
+    .PixelyTooltip-ArrowContainer {
+        display: flex;
+        overflow: hidden;
+        z-index: -1;
+        filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, .16));
+    }
+    
+    .PixelyTooltip-Arrow {
+        display: block;
+        color: white;
+        margin: auto;
+    }
+}

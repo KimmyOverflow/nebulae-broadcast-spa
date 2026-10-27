@@ -1,0 +1,8 @@
+@layer pixely-ui {
+    /* TODO: z-index management */
+    
+    .PixelyPopover {
+        position: fixed;
+        z-index: 1000;
+    }
+}

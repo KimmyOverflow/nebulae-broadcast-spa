@@ -1,0 +1,18 @@
+.menu-logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 64px;
+    margin-top: auto;
+}
+
+.menu__auth-button-group {
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px 12px 12px;
+    gap: 12px;
+}
+
+.menu__auth-button-group .PixelyButton {
+    width: 100%;
+}

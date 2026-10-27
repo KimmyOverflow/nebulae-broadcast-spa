@@ -1,0 +1,68 @@
+#splash {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.splash__logo {
+    height: 16.7dvh;
+    width: 16.7dvw;
+    animation: splash-fade-in .5s;
+}
+
+.splash__pride-slogan {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: min(3.6dvw, 1.33rem);
+    letter-spacing: min(4.8dvw, 4rem);
+    text-indent: min(4.8dvw, 4rem);
+    gap: 18dvw;
+    animation: splash-fade-in .3s;
+}
+
+.splash__fake-progress-bar {
+    position: absolute;
+    display: flex;
+    top: 83.3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 4px;
+    width: 16.7dvw;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, .16);
+}
+
+.splash__fake-progress-bar span {
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    animation: progress-bar-move 60s cubic-bezier(.05, .7, .1, 1);
+}
+
+@keyframes splash-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes progress-bar-move {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(-10%);
+    }
+}
+
+@media (max-width: 480px) {
+    .splash__fake-progress-bar {
+        width: 33.3dvw;
+    }
+}

@@ -1,0 +1,90 @@
+@layer pixely-ui {
+    .PixelyCircularProgress-Container {
+        color: inherit;
+        display: flex;
+    }
+    
+    .PixelyCircularProgress-DotContainer {
+        color: inherit;
+        margin: auto;
+        position: relative;
+        animation: PixelyCircularProgress-DotContainer-Spin 4s linear infinite;
+    }
+    
+    .PixelyCircularProgress-Dot {
+        color: inherit;
+        height: 100%;
+        width: 100%;
+        visibility: hidden;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        transform: rotate(-180deg);
+        animation-iteration-count: infinite;
+        animation-name: PixelyCircularProgress-Dot-Spin;
+        animation-duration: 4s;
+        overflow: visible;
+    }
+    
+    .PixelyCircularProgress-Dot:nth-child(2) {
+        animation-delay: 160ms;
+        rotate: -34deg;
+    }
+    
+    .PixelyCircularProgress-Dot:nth-child(3) {
+        animation-delay: 320ms;
+        rotate: -68deg;
+    }
+    
+    .PixelyCircularProgress-Dot:nth-child(4) {
+        animation-delay: 480ms;
+        rotate: -102deg;
+    }
+    
+    .PixelyCircularProgress-Dot:nth-child(5) {
+        animation-delay: 640ms;
+        rotate: -136deg;
+    }
+    
+    @keyframes PixelyCircularProgress-DotContainer-Spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        96% {
+            transform: rotate(405deg);
+        }
+        100% {
+            transform: rotate(405deg);
+        }
+    }
+    
+    @keyframes PixelyCircularProgress-Dot-Spin {
+        0% {
+            visibility: visible;
+            transform: rotate(-135deg);
+            animation-timing-function: cubic-bezier(0,1,.5,1);
+        }
+        16% {
+            transform: rotate(-30deg);
+            animation-timing-function: linear;
+        }
+        24% {
+            transform: rotate(-30deg);
+            animation-timing-function: cubic-bezier(.875,0,.125,1);
+        }
+        56% {
+            transform: rotate(150deg);
+            animation-timing-function: linear;
+        }
+        64% {
+            transform: rotate(150deg);
+            animation-timing-function: cubic-bezier(1,0,1,.5);
+        }
+        80% {
+            visibility: hidden;
+            transform: rotate(270deg);
+            animation-timing-function: linear;
+        }
+        100% {}
+    }
+}

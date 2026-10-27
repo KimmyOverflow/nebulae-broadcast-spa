@@ -1,0 +1,95 @@
+@layer pixely-ui {
+    .PixelyLinearProgress-Container {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .PixelyLinearProgress-DotContainer {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        animation: PixelyLinearProgress-Container-Move 3.2s linear infinite;
+    }
+    
+    .PixelyLinearProgress-Dot {
+        height: 100%;
+        width: 100%;
+        visibility: hidden;
+        position: absolute;
+        animation-iteration-count: infinite;
+        animation-name: PixelyLinearProgress-Dot-Move;
+        animation-duration: 3.2s;
+        overflow: visible;
+    }
+    
+    .PixelyLinearProgress-Dot:nth-child(2) {
+        animation-delay: 160ms;
+        left: -8px
+    }
+    
+    .PixelyLinearProgress-Dot:nth-child(3) {
+        animation-delay: 320ms;
+        left: -16px
+    }
+    
+    .PixelyLinearProgress-Dot:nth-child(4) {
+        animation-delay: 480ms;
+        left: -24px
+    }
+    
+    .PixelyLinearProgress-Dot:nth-child(5) {
+        animation-delay: 640ms;
+        left: -32px
+    }
+    
+    @keyframes PixelyLinearProgress-Dot-Move {
+        0% {
+            visibility: visible;
+            transform: translateX(0%);
+            animation-timing-function: cubic-bezier(0,1,.5,1);
+        }
+        25% {
+            transform: translateX(calc(35% + 18px));
+        }
+        50% {
+            transform: translateX(calc(35% + 18px));
+            animation-timing-function: cubic-bezier(1,0,1,.5);
+        }
+        75% {
+            visibility: hidden;
+            transform: translateX(calc(70% + 36px));
+        }
+        100% {
+            transform: translateX(calc(70% + 36px));
+        }
+    }
+    
+    @keyframes PixelyLinearProgress-Container-Move {
+        0% {
+            transform: translateX(0%);
+        }
+        96% {
+            transform: translateX(30%);
+        }
+        100% {
+            transform: translateX(30%);
+        }
+    }
+    
+    .PixelyLinearProgress-Track {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+    }
+    
+    .PixelyLinearProgress-Progress {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        transition: cubic-bezier(0, .8, .2, 1) .5s;
+    }
+    
+    .PixelyLinearProgress-Label {
+        text-align: center;
+    }
+}

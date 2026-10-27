@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="viewbox" width="24" height="24" fill="none"/>
+  <line id="直线_23" data-name="直线 23" x2="17" transform="translate(3.5 9.5)" fill="none" stroke="currentColor" stroke-width="1"/>
+  <line id="直线_24" data-name="直线 24" x2="17" transform="translate(3.5 14.5)" fill="none" stroke="currentColor" stroke-width="1"/>
+  <path id="排除_4" data-name="排除 4" d="M-897-291c-2.205,0-4-4.037-4-9s1.794-9,4-9,4,4.037,4,9S-894.794-291-897-291Zm0-17c-1.654,0-3,3.589-3,8s1.346,8,3,8,3-3.589,3-8S-895.346-308-897-308Z" transform="translate(909 312)" fill="currentColor"/>
+  <g id="椭圆_72" data-name="椭圆 72" transform="translate(3 3)" fill="none" stroke="currentColor" stroke-width="1">
+    <circle cx="9" cy="9" r="9" stroke="none"/>
+    <circle cx="9" cy="9" r="8.5" fill="none"/>
+  </g>
+</svg>

@@ -1,0 +1,19 @@
+.register-panel-skeleton {
+    height: 560px;
+    width: 840px;
+    margin: auto;
+    background-color: #111111;
+    animation: register-panel-skeleton-fade-in .5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@keyframes register-panel-skeleton-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,15 @@
+.stream-player-container {
+    display: flex;
+    background-color: black;
+}
+
+#stream-player {
+    width: 100%;
+    height: calc(100dvh - 36px);
+}
+
+@media (max-width: 480px) {
+    #stream-player {
+        height: calc(100dvh - 72px);
+    }
+}

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="viewbox" width="24" height="24" fill="none"/>
+  <g id="组_46" data-name="组 46" transform="translate(-3.665 -5)">
+    <g id="矩形_199" data-name="矩形 199" transform="translate(15.665 21)" fill="none" stroke="currentColor" stroke-width="1">
+      <rect width="9" height="5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="8" height="4" fill="none"/>
+    </g>
+    <g id="矩形_220" data-name="矩形 220" transform="translate(15.665 17)" fill="none" stroke="currentColor" stroke-width="1">
+      <rect width="9" height="5" stroke="none"/>
+      <rect x="0.5" y="0.5" width="8" height="4" fill="none"/>
+    </g>
+    <rect id="矩形_218" data-name="矩形 218" width="1" height="1" transform="translate(17.665 23)" fill="currentColor"/>
+    <rect id="矩形_219" data-name="矩形 219" width="1" height="1" transform="translate(17.665 19)" fill="currentColor"/>
+  </g>
+  <g id="组_37" data-name="组 37" transform="translate(-7 -7)">
+    <path id="减去_14" data-name="减去 14" d="M-16-549h0a8.009,8.009,0,0,1-8-8,8.009,8.009,0,0,1,8-8,8.009,8.009,0,0,1,8,8H-9a6.955,6.955,0,0,0-2.053-4.948A6.953,6.953,0,0,0-16-564a7.008,7.008,0,0,0-7,7,7.008,7.008,0,0,0,7,7v1Z" transform="translate(34 575)" fill="currentColor"/>
+    <path id="减去_13" data-name="减去 13" d="M-21-549h0c-2.205,0-4-3.59-4-8s1.795-8,4-8,4,3.589,4,8h-1a12.958,12.958,0,0,0-.88-4.948C-19.447-563.271-20.2-564-21-564c-1.655,0-3,3.14-3,7s1.346,7,3,7v1Z" transform="translate(39 575)" fill="currentColor"/>
+    <path id="路径_179" data-name="路径 179" d="M1,0H15" transform="translate(10 15.5)" fill="none" stroke="currentColor" stroke-width="1"/>
+    <path id="路径_180" data-name="路径 180" d="M1,0H8" transform="translate(10 20.5)" fill="none" stroke="currentColor" stroke-width="1"/>
+  </g>
+</svg>

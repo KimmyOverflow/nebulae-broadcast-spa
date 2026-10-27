@@ -1,0 +1,40 @@
+.menu__stream-token-detail__modal-container {
+    z-index: 5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu__stream-token-detail__modal {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--panel);
+    backdrop-filter: var(--backdrop-filter);
+    padding: 12px;
+    gap: 12px;
+}
+
+.menu__stream-token-detail__modal__token-detail {
+    padding: 10px 12px;
+    background-color: var(--panel);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu__stream-token-detail__modal__token-detail p {
+    display: flex;
+}
+
+.menu__stream-token-detail__modal__token-detail p span:first-child {
+    opacity: .67;
+    margin-right: 3rem;
+}
+
+.menu__stream-token-detail__modal__token-detail p span:last-child {
+    margin-left: auto;
+    text-align: right;
+}

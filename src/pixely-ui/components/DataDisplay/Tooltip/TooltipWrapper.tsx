@@ -1,0 +1,130 @@
+import '../../../global.css'
+import { useEffect, useState } from "react"
+import Popover, { type PopoverPlacement } from "../../Utils/Popover/Popover"
+import PopoverTransitionProvider from "../../Utils/Popover/PopoverTransitionProvider"
+import Tooltip from "./Tooltip"
+import { createPortal } from "react-dom"
+
+export interface TooltipWrapperProps {
+    /** `children` is useless if `childRef` is provided, but this prop is still non-optional
+     * to prevent self-closing usage of the component and maintain the readability of your code.
+     * Bite me.*/
+    children: React.ReactNode,
+    /** Providing ref of the child element to avoid rendering yet another div.
+     * Strongly recommended. */
+    childRef?: React.RefObject<HTMLElement>,
+    renderTarget?: Element | DocumentFragment,
+    placement?: PopoverPlacement,
+    offset?: number,
+    text?: string,
+    noArrow?: boolean,
+}
+
+function calcAnchorPoint(rect: DOMRect, placement: PopoverPlacement) {
+    let top = rect.top
+    let left = rect.left
+
+    switch (placement) {
+        case 'top':
+            left += rect.width / 2
+            break
+        case 'bottom':
+            top += rect.height
+            left += rect.width / 2
+            break
+        case 'left':
+            top += rect.height / 2
+            break
+        case 'top_end':
+            left += rect.width
+            break
+        case 'bottom_start':
+            top += rect.height
+            break
+        case 'bottom_end':
+            top += rect.height
+            left += rect.width
+            break
+        case 'left_end':
+            top += rect.height
+            break
+        case 'right':
+            top += rect.height / 2
+            left += rect.width
+            break
+        case 'right_start':
+            left += rect.width
+            break
+        case 'right_end':
+            top += rect.height
+            left += rect.width
+            break
+        default:
+            break
+    }
+
+    return { top, left }
+
+}
+
+const TooltipWrapper: React.FC<TooltipWrapperProps> = ({
+    children,
+    childRef,
+    renderTarget = document.documentElement,
+    placement = 'top',
+    offset = 8,
+    text,
+    noArrow = false,
+}: TooltipWrapperProps) => {
+    const [isShow, setShow] = useState(false)
+    const [anchorPoint, setAnchorPoint] = useState({ top: 0, left: 0 })
+
+    if(childRef) {
+        const mouseEnterHandler = () => {
+            setAnchorPoint(calcAnchorPoint(childRef.current!.getBoundingClientRect(), placement))
+            setShow(true)
+        }
+        const mouseLeaveHandler = () => {
+            setShow(false)
+        }
+        useEffect(() => {
+            childRef.current?.addEventListener('mouseenter', mouseEnterHandler)
+            childRef.current?.addEventListener('mouseleave', mouseLeaveHandler)
+            return () => {
+                childRef.current?.removeEventListener('mouseenter', mouseEnterHandler)
+                childRef.current?.removeEventListener('mouseleave', mouseLeaveHandler)
+            }
+        }, [])
+        return createPortal((
+            <PopoverTransitionProvider in={isShow} placement={placement}>
+                <Popover placement={placement} anchorPoint={anchorPoint} offset={offset}>
+                    <Tooltip placement={placement} text={text} noArrow={noArrow}/>
+                </Popover>
+            </PopoverTransitionProvider>
+        ), renderTarget)
+    }
+
+    else {
+        const mouseEnterHandler = (e: React.MouseEvent<HTMLElement>) => {
+            setAnchorPoint(calcAnchorPoint(e.currentTarget.getBoundingClientRect(), placement))
+            setShow(true)
+        }
+        const mouseLeaveHandler = () => {
+            setShow(false)
+        }
+        return (
+            <div className='PixelyUI PixelyTooltip-Wrapper' onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
+                {children}
+                {createPortal((
+                    <PopoverTransitionProvider in={isShow} placement={placement}>
+                        <Popover placement={placement} anchorPoint={anchorPoint} offset={offset}>
+                            <Tooltip placement={placement} text={text} noArrow={noArrow}/>
+                        </Popover>
+                    </PopoverTransitionProvider>
+                ), renderTarget)}
+            </div>
+        )
+    }
+}
+
+export default TooltipWrapper

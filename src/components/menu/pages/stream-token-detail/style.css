@@ -1,0 +1,20 @@
+.menu__stream-token-detail__entry-content {
+    display: flex;
+    width: 100%;
+}
+
+.menu__stream-token-detail__entry-content__label {
+    opacity: .67;
+}
+
+.menu__stream-token-detail__entry-content__data {
+    margin-left: auto;
+    margin-right: 12px;
+}
+
+.menu__stream-token-detail__button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+}

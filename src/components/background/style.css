@@ -1,0 +1,119 @@
+.background {
+    user-select: none;
+    position: fixed;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.background__logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 16.7dvh;
+    width: 16.7dvw;
+    opacity: .042;
+    animation: background-logo-opacity-change .3s;
+}
+
+.background__logo--fade-in {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 16.7dvh;
+    width: 16.7dvw;
+    opacity: .042;
+    animation: background-logo-fade-in .3s;
+}
+
+.background__logo--rainbow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 16.7dvh;
+    width: 16.7dvw;
+    opacity: 0;
+    animation: background-logo-fade-out .5s;
+}
+
+.background__image {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.background__pride-slogan {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: min(3.6dvw, 1.33rem);
+    letter-spacing: min(4.8dvw, 4rem);
+    text-indent: min(4.8dvw, 4rem);
+    gap: 18dvw;
+    opacity: 0;
+    animation: background-logo-fade-out .5s;
+}
+
+.background__fake-progress-bar {
+    position: absolute;
+    display: flex;
+    top: 83.3%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 4px;
+    width: 16.7dvw;
+    background-color: white;
+    opacity: 0;
+    animation: background-progress-bar-fade-out .5s;
+}
+
+@keyframes background-logo-opacity-change {
+    0% {
+        opacity: .67;
+    }
+    100% {
+        opacity: .042;
+    }
+}
+
+@keyframes background-logo-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: .042;
+    }
+}
+
+@keyframes background-logo-fade-out {
+    0% {
+        opacity: .67;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes background-progress-bar-fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .background__fake-progress-bar {
+        width: 33.3dvw;
+    }
+}

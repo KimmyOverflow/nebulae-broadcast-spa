@@ -1,0 +1,8 @@
+.menu__license-file-content {
+/* style={{ fontSize: '11px', margin: '0px', padding: '12px', whiteSpace: 'pre-wrap' }} */
+    font-size: 11px;
+    margin: 0px;
+    padding: 12px;
+    white-space: pre-wrap;
+    background-color: rgba(0, 0, 0, .5);
+}

@@ -1,0 +1,38 @@
+@layer pixely-ui {
+    .PixelyRipplePool {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        pointer-events: none;
+    }
+    
+    .PixelyRippleEffect {
+        position: absolute;
+        background-color: currentColor;
+        border-radius: 50%;
+        pointer-events: none;
+    }
+    
+    .PixelyRippleEffect--Enter {
+        scale: 0;
+        opacity: .5;
+        transition-timing-function: cubic-bezier(0, .64, .36, 1);
+    }
+    .PixelyRippleEffect--EnterActive {
+        scale: 1;
+        opacity: 1;
+        transition-timing-function: cubic-bezier(0, .64, .36, 1);
+    }
+    
+    .PixelyRippleEffect--Exit {
+        scale: 1;
+        opacity: 1;
+        transition-timing-function: linear;
+    }
+    .PixelyRippleEffect--ExitActive {
+        scale: 1.6;
+        opacity: 0;
+        transition-timing-function: linear;
+    }
+}

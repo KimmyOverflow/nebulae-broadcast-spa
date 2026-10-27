@@ -1,0 +1,16 @@
+.menu__stream-token__entry-content {
+    display: flex;
+    flex-direction: column;
+    margin: 8px 0;
+    margin-right: auto;
+}
+
+.menu__stream-token__entry-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu__stream-token__search-box {
+    padding: 12px;
+    padding-top: 0;
+}

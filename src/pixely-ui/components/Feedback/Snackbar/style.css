@@ -1,0 +1,22 @@
+@layer pixely-ui {
+    .PixelySnackbar {
+        display: flex;
+        gap: 16px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, .16);
+        overflow: hidden;
+        padding: 8px;
+        background-color: #313033;
+        color: white
+    }
+    
+    .PixelySnackbar-Message {
+        font-size: 14px;
+        margin: auto;
+        margin-left: 10px;
+    }
+    
+    .PixelySnackbar-ActionContainer {
+        justify-self: end;
+        margin-left: auto;
+    }
+}

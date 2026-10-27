@@ -1,0 +1,21 @@
+.modal-container {
+    z-index: 5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.modal-container_centered {
+    z-index: 5;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

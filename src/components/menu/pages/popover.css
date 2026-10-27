@@ -1,0 +1,35 @@
+.popover-dialogue-bubble {
+    position: absolute;
+    clip-path: polygon(
+        0% 0%,
+        calc(100% - 8px) 0%,
+        calc(100% - 8px) 11px,
+        100% 19px,
+        calc(100% - 8px) 27px,
+        calc(100% - 8px) 100%,
+        0% 100%
+    );
+    backdrop-filter: var(--backdrop-filter);
+}
+
+.popover-content {
+    padding: 12px;
+    padding-right: 20px;
+    min-height: 36px;
+    min-width: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: var(--panel);
+}
+
+@media (max-width: 480px) {
+    .popover-dialogue-bubble {
+        position: initial;
+        clip-path: none;
+    }
+
+    .popover-content {
+        padding-right: 12px;
+    }
+}

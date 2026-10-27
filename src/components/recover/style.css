@@ -1,0 +1,27 @@
+.page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 32px 48px;
+    background-color: var(--panel);
+    backdrop-filter: var(--backdrop-filter);
+    border: 1px solid var(--border);
+}
+
+.page__panel h1 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.page__panel a {
+    color: var(--text-white-primary);
+}

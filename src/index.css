@@ -1,0 +1,73 @@
+:root {
+    --gray-primary: #111111;
+    --gray-secondary: #222222;
+    --gray-tertiary: #333333;
+    --gray-neutral: #808080;
+
+    --text-white-primary: #ffffff;
+    --text-black-primary: #222222;
+
+    --text-white-secondary: rgba(255, 255, 255, .67);
+    --text-black-secondary: rgba(34, 34, 34, .67);
+
+    --text-size-primary: 15px;
+    --text-size-secondary: 13px;
+    --text-size-tertiary: 11px;
+
+    --border: rgba(255, 255, 255, .17);
+    --panel: rgba(0, 0, 0, .33);
+    --backdrop-filter: blur(8px);
+
+    --easing-standard: .3s cubic-bezier(.2, 0, 0, 1);
+    --easing-standard-deceleration: .25s cubic-bezier(0, 0, 0, 1);
+    --easing-standard-acceleration: .2s cubic-bezier(.3, 0, 1, 1);
+
+    --easing-emphasized: .5s cubic-bezier(.05, .7, .1, 1);
+    --easing-emphasized-deceleration: .4s cubic-bezier(.05, .7, .1, 1);
+    --easing-emphasized-acceleration: .2s cubic-bezier(.3, 0, .8, .15);
+
+    color-scheme: dark;
+    color: var(--text-white-primary);
+    background-color: var(--gray-secondary);
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --font-family-cjk: 'Noto Sans SC';
+    --font-family-western: 'Noto Sans';
+
+    @media (max-resolution: 1dppx) {
+        --font-family-cjk: 'Microsoft YaHei UI';
+        --font-family-western: 'Segoe UI';
+        line-height: 1.4;
+        pre {
+            line-height: normal;
+        }
+    }
+
+    font-family: var(--font-family-cjk);
+    font-size: var(--text-size-secondary);
+}
+
+.PixelyUI {
+    font-family: var(--font-family-cjk);
+}
+
+.PixelyButton {
+    box-shadow: none;
+}
+
+.PixelyTextField {
+    width: 100%;
+    background-color: var(--panel);
+    border-color: rgba(255, 255, 255, .17);
+}
+
+.PixelyTextField--Focus {
+    border-color: rgba(255, 255, 255, .33);
+}
+
+p {
+    margin: 0;
+}

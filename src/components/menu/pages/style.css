@@ -1,0 +1,100 @@
+.menu-page {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.menu-page__hr {
+    border: none;
+    height: 24px;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.menu-page__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 36px;
+    flex-shrink: 0;
+    background-color: var(--panel);
+    border-bottom: solid 1px rgba(255, 255, 255, .16);
+}
+
+.menu-page__header span {
+    user-select: none;
+}
+
+.menu-page__header .PixelyDecorator-Wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(255, 255, 255, 0);
+    transition: .5s;
+}
+
+.menu-page__header .PixelyDecorator-Wrapper:hover {
+    background-color: rgba(255, 255, 255, .08);
+    transition: .1s;
+}
+
+.menu-page__entry-section {
+    /* background-color: var(--panel); */
+    /* border-top: 1px solid rgba(255, 255, 255, .16); */
+    /* border-bottom: 1px solid rgba(255, 255, 255, .16); */
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-page__entry-section .menu-page__entry-section__entry:first-child {
+    border-top: 1px solid rgba(255, 255, 255, .16);
+}
+
+.menu-page__entry-section__entry {
+    font-size: var(--text-size-secondary);
+    width: 100%;
+    min-height: 36px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    gap: 6px;
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .16);
+    background-color: var(--panel);
+}
+
+.menu-page__entry-section__entry .PixelyRipplePool {
+    background-color: rgba(255, 255, 255, 0);
+    transition: .5s;
+}
+
+.menu-page__entry-section__entry:hover .PixelyRipplePool {
+    background-color: rgba(255, 255, 255, .08);
+    transition: .1s;
+}
+
+.menu-page__content {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scrollbar-width: none;
+    flex-grow: 1;
+}
+
+.menu-page__content__wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.menu-page__scrollbar {
+    position: absolute;
+    right: 0px;
+    width: 4px;
+    background-color: var(--panel);
+    transition: 
+        opacity .1s linear,
+        height .3s cubic-bezier(.05, .7, .1, 1)
+}

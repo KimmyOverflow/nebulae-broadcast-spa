@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="viewbox" width="24" height="24" fill="none"/>
+  <line id="直线_68" data-name="直线 68" x1="4" transform="translate(17.5 18.5)" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="1"/>
+  <line id="直线_69" data-name="直线 69" x1="4" transform="translate(17.5 16.5)" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="1"/>
+  <line id="直线_70" data-name="直线 70" x2="4" transform="translate(17.5 14.5)" fill="none" stroke="currentColor" stroke-linecap="square" stroke-width="1"/>
+  <path id="减去_17" data-name="减去 17" d="M-223.929-421h-1.009A8.01,8.01,0,0,1-217-428a8.007,8.007,0,0,1,6,2.715v1.684a7.046,7.046,0,0,0-6-3.4,7.033,7.033,0,0,0-6.929,6Z" transform="translate(227 440)" fill="currentColor"/>
+  <g id="椭圆_27" data-name="椭圆 27" transform="translate(6 5)" fill="none" stroke="currentColor" stroke-width="1">
+    <circle cx="4" cy="4" r="4" stroke="none"/>
+    <circle cx="4" cy="4" r="3.5" fill="none"/>
+  </g>
+</svg>
