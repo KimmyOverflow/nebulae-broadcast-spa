@@ -20,6 +20,9 @@ importers:
       color:
         specifier: ^5.0.3
         version: 5.0.3
+      hi-base32:
+        specifier: ^0.6.0
+        version: 0.6.0
       motion:
         specifier: ^13.3.0
         version: 13.3.0(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
@@ -1057,6 +1060,9 @@ packages:
 
   hermes-parser@0.25.1:
     resolution: {integrity: sha512-6pEjquH3rqaI6cYAXYPcz9MS4rY6R4ngRgrgfDshRptUZIc3lw0MCIJIGDj9++mfySOuPTHB4nrSW99BCvOPIA==}
+
+  hi-base32@0.6.0:
+    resolution: {integrity: sha512-MVLsWpr97uu7xRyHARRQNpdFQRNWrydIusX1flyV4ELAyA7FzzPscHHamZon3bfDUuktt2H6fiCj9n0nJCVTpQ==}
 
   hosted-git-info@10.1.1:
     resolution: {integrity: sha512-DeOnSPAvOndYKfw075gt8yZzQ7S2hNztw34zBTfhIzLhmBTswIBg5/y+pqu/VD5cYWm5goAFTusDmUEmKZ0PEQ==}
@@ -2861,6 +2867,8 @@ snapshots:
   hermes-parser@0.25.1:
     dependencies:
       hermes-estree: 0.25.1
+
+  hi-base32@0.6.0: {}
 
   hosted-git-info@10.1.1:
     dependencies:
