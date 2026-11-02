@@ -1,0 +1,32 @@
+.silhouette {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+}
+
+.silhouette img {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: 2s cubic-bezier(.1, .7, .1, 1);
+}
+
+.silhouette svg {
+    color: white;
+    margin: auto;
+    scale: 3;
+    filter: drop-shadow(0px 0px 8px black);
+    pointer-events: none;
+}
+
+.silhouette-mask {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    box-shadow: inset 0px 0px 48px black;
+    transition: .5s;
+}

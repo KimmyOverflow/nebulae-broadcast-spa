@@ -9,34 +9,6 @@
 .register-panel__side-image {
     width: 280px;
     height: 560px;
-    position: relative;
-    display: flex;
-    overflow: hidden;
-}
-
-.register-panel__side-image img {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-    transition: 2s cubic-bezier(.1, .7, .1, 1);
-}
-
-.register-panel__side-image svg {
-    color: white;
-    margin: auto;
-    scale: 3;
-    filter: drop-shadow(0px 0px 8px black);
-    pointer-events: none;
-}
-
-.register-panel__side-image-mask {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    pointer-events: none;
-    box-shadow: inset 0px 0px 48px black;
-    transition: .5s;
 }
 
 .register-panel__form {
