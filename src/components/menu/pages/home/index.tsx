@@ -213,8 +213,9 @@ export const MenuHome: React.FC<{
                     </div>
                 </div>
                 <div className='menu__auth-button-group'>
+                    {/* TODO: 用用户名+动态口令取代登录按钮，将注册按钮改为 Anchor。 */}
                     <Button color='#111111' text='登录' onClick={renewSession}/>
-                    <Button color='#111111' text='注册' />
+                    <Button color='#111111' text='注册' onClick={() => window.location.href = '/register'} />
                 </div>
                 <MenuSection>
                     <MenuEntry onClick={() => navigator.push({ location: 'license-file' })}>
