@@ -10,6 +10,8 @@ export interface TextFieldProps {
     defaultValue?: string
     rippleColor?: string
     onChange?: (value: string) => void
+    startSlot?: React.ReactNode
+    endSlot?: React.ReactNode
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -19,6 +21,8 @@ const TextField: React.FC<TextFieldProps> = ({
     placeholder,
     defaultValue,
     rippleColor = 'rgba(255,255,255,.8)',
+    startSlot,
+    endSlot,
     onChange,
 }: TextFieldProps) => {
     useEffect(() => {
@@ -55,6 +59,7 @@ const TextField: React.FC<TextFieldProps> = ({
             className={`PixelyUI PixelyTextField${focus ? ` PixelyTextField--Focus` : ''}`}
             onClick={() => inputRef.current?.focus()}
         >
+            {startSlot}
             <input
                 name={name}
                 required={required}
@@ -66,6 +71,7 @@ const TextField: React.FC<TextFieldProps> = ({
                 onFocus={() => setFocus(decoratorRef.current!.getBoundingClientRect())}
                 onBlur={() => setFocus(false)}
             />
+            {endSlot}
         </Decorator>
     )
 }
