@@ -1,18 +1,12 @@
 import '../../../global.css'
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import Popover, { type PopoverPlacement } from "../../Utils/Popover/Popover"
 import PopoverTransitionProvider from "../../Utils/Popover/PopoverTransitionProvider"
 import Tooltip from "./Tooltip"
 import { createPortal } from "react-dom"
 
 export interface TooltipWrapperProps {
-    /** `children` is useless if `childRef` is provided, but this prop is still non-optional
-     * to prevent self-closing usage of the component and maintain the readability of your code.
-     * Bite me.*/
-    children: React.ReactNode,
-    /** Providing ref of the child element to avoid rendering yet another div.
-     * Strongly recommended. */
-    childRef?: React.RefObject<HTMLElement>,
+    children: (ref: React.RefObject<Element | null>) => React.ReactNode,
     renderTarget?: Element | DocumentFragment,
     placement?: PopoverPlacement,
     offset?: number,
@@ -69,7 +63,6 @@ function calcAnchorPoint(rect: DOMRect, placement: PopoverPlacement) {
 
 const TooltipWrapper: React.FC<TooltipWrapperProps> = ({
     children,
-    childRef,
     renderTarget = document.documentElement,
     placement = 'top',
     offset = 8,
@@ -78,53 +71,35 @@ const TooltipWrapper: React.FC<TooltipWrapperProps> = ({
 }: TooltipWrapperProps) => {
     const [isShow, setShow] = useState(false)
     const [anchorPoint, setAnchorPoint] = useState({ top: 0, left: 0 })
+    const childRef = useRef<Element>(null)
 
-    if(childRef) {
-        const mouseEnterHandler = () => {
-            setAnchorPoint(calcAnchorPoint(childRef.current!.getBoundingClientRect(), placement))
-            setShow(true)
-        }
-        const mouseLeaveHandler = () => {
-            setShow(false)
-        }
-        useEffect(() => {
-            childRef.current?.addEventListener('mouseenter', mouseEnterHandler)
-            childRef.current?.addEventListener('mouseleave', mouseLeaveHandler)
-            return () => {
-                childRef.current?.removeEventListener('mouseenter', mouseEnterHandler)
-                childRef.current?.removeEventListener('mouseleave', mouseLeaveHandler)
-            }
-        }, [])
-        return createPortal((
-            <PopoverTransitionProvider in={isShow} placement={placement}>
-                <Popover placement={placement} anchorPoint={anchorPoint} offset={offset}>
-                    <Tooltip placement={placement} text={text} noArrow={noArrow}/>
-                </Popover>
-            </PopoverTransitionProvider>
-        ), renderTarget)
+    const mouseEnterHandler = () => {
+        setAnchorPoint(calcAnchorPoint(childRef.current!.getBoundingClientRect(), placement))
+        setShow(true)
     }
-
-    else {
-        const mouseEnterHandler = (e: React.MouseEvent<HTMLElement>) => {
-            setAnchorPoint(calcAnchorPoint(e.currentTarget.getBoundingClientRect(), placement))
-            setShow(true)
-        }
-        const mouseLeaveHandler = () => {
-            setShow(false)
-        }
-        return (
-            <div className='PixelyUI PixelyTooltip-Wrapper' onMouseEnter={mouseEnterHandler} onMouseLeave={mouseLeaveHandler}>
-                {children}
-                {createPortal((
-                    <PopoverTransitionProvider in={isShow} placement={placement}>
-                        <Popover placement={placement} anchorPoint={anchorPoint} offset={offset}>
-                            <Tooltip placement={placement} text={text} noArrow={noArrow}/>
-                        </Popover>
-                    </PopoverTransitionProvider>
-                ), renderTarget)}
-            </div>
-        )
+    const mouseLeaveHandler = () => {
+        setShow(false)
     }
+    useEffect(() => {
+        childRef.current?.addEventListener('mouseenter', mouseEnterHandler)
+        childRef.current?.addEventListener('mouseleave', mouseLeaveHandler)
+        return () => {
+            childRef.current?.removeEventListener('mouseenter', mouseEnterHandler)
+            childRef.current?.removeEventListener('mouseleave', mouseLeaveHandler)
+        }
+    }, [])
+    return (
+        <>
+            {createPortal((
+                <PopoverTransitionProvider in={isShow} placement={placement}>
+                    <Popover placement={placement} anchorPoint={anchorPoint} offset={offset}>
+                        <Tooltip placement={placement} text={text} noArrow={noArrow}/>
+                    </Popover>
+                </PopoverTransitionProvider>
+            ), renderTarget)}
+            {children(childRef)}
+        </>
+    )
 }
 
 export default TooltipWrapper
