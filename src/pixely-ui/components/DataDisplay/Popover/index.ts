@@ -1,4 +1,5 @@
 export { default as PopoverTransition } from './PopoverTransition'
+export { AnchoredPopover } from './AnchoredPopover'
 
 export type { PopoverTransitionProps } from './PopoverTransition'
 

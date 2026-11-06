@@ -1,11 +1,9 @@
-import { createPortal } from 'react-dom'
 import '../../../global.css'
 import SelectBox from './SelectBox'
 import SelectMenu from './SelectMenu'
-import PopoverTransition from '../../DataDisplay/Popover/PopoverTransition'
-import PositionedOverlay from '../../Utils/PositionedOverlay/PositionedOverlay'
 import { type MouseEventHandler, useRef, useState } from 'react'
 import useOutsideClick from '../../../hooks/useOutsideClick'
+import { AnchoredPopover } from '../../DataDisplay/Popover'
 
 export interface SelectProps {
     defaultValue?: string,
@@ -48,34 +46,34 @@ const Select: React.FC<SelectProps> = ({
         onSelectChange(value)
     }
     return (
-        <>
-            <SelectBox
-                focusd={focused}
-                ref={selectBoxRef}
-                style={{minWidth}}
-                placeholder={placeholder}
-                selected={options.find(opt => opt.value === selected)?.label}
-                onMouseDown={handleSelectBoxMouseDown}
-            />
-            {createPortal((
-                <PopoverTransition in={focused} placement='bottom_start'>
-                    {(ref, style) => (
-                        <PositionedOverlay
-                            ref={node => {
-                                popoverRef.current = node
-                                ref.current = node
-                            }}
-                            placement='bottom_start'
-                            pos={{ x: anchorPoint.current.left, y: anchorPoint.current.top }}
-                            offset={8}
-                            style={style}
-                        >
-                            <SelectMenu selected={selected} options={options} onSelectChange={handleSelectChange} style={{minWidth: selectBoxWidth.current}}/>
-                        </PositionedOverlay>
-                    )}
-                </PopoverTransition>
-            ), renderTarget)}
-        </>
+        <AnchoredPopover
+            placement='bottom_start'
+            offset={8}
+            content={(
+                <SelectMenu
+                    selected={selected}
+                    options={options}
+                    onSelectChange={handleSelectChange}
+                    style={{minWidth: selectBoxWidth.current}}
+                />
+            )}
+            renderTarget={renderTarget}
+            in={focused}
+        >
+            {ref => (
+                <SelectBox
+                    focusd={focused}
+                    ref={node => {
+                        ref.current = node
+                        popoverRef.current = node
+                    }}
+                    style={{minWidth}}
+                    placeholder={placeholder}
+                    selected={options.find(opt => opt.value === selected)?.label}
+                    onMouseDown={handleSelectBoxMouseDown}
+                />
+            )}
+        </AnchoredPopover>
     )
 }
 

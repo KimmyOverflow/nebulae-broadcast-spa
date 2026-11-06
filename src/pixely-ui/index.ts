@@ -1,6 +1,5 @@
 export { Avatar } from './components/DataDisplay/Avatar';
 export { ImagePresenter } from './components/DataDisplay/ImagePresenter';
-export { Tooltip, TooltipWrapper } from './components/DataDisplay/Tooltip'
 export { CircularProgress, InfiniteCircularProgress, DeterminedCircularProgress } from './components/Feedback/CircularProgress';
 export { LinearProgress, InfiniteLinearProgress, DeterminedLinearProgress } from './components/Feedback/LinearProgress';
 export { Snackbar } from './components/Feedback/Snackbar'
@@ -14,7 +13,6 @@ export { Decorator } from './components/Utils/Decorator';
 
 export type { AvatarProps } from './components/DataDisplay/Avatar'
 export type { ImagePresenterProps } from './components/DataDisplay/ImagePresenter'
-export type { TooltipProps, TooltipWrapperProps } from './components/DataDisplay/Tooltip'
 export type { CircularProgressProps, InfiniteCircularProgressProps, DeterminedCircularProgressProps } from './components/Feedback/CircularProgress'
 export type { LinearProgressProps, InfiniteLinearProgressProps, DeterminedLinearProgressProps } from './components/Feedback/LinearProgress'
 export type { SnackbarProps } from './components/Feedback/Snackbar'
