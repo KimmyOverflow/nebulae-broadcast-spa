@@ -56,9 +56,9 @@ export const NotificationProvider: React.FC<{ ref?: Ref<HTMLDivElement>, childre
                             className='notification'
                             onPointerEnter={() => stopTimer(item.id)}
                             onPointerLeave={() => resetTimer(item.id)}
-                            initial={{ x: -18, opacity: 0, filter: 'blur(12px)' }}
+                            initial={{ x: -48, opacity: 0, filter: 'blur(12px)' }}
                             animate={{ x: 0, opacity: 1, filter: 'blur(0px)' }}
-                            exit={{ x: -18, opacity: 0, filter: 'blur(12px)' }}
+                            exit={{ x: -48, opacity: 0, filter: 'blur(12px)' }}
                             transition={{ duration: .5, ease: [.05, .7, .1, 1] }}
                             layout
                         >
