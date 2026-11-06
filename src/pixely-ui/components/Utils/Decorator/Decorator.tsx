@@ -2,7 +2,7 @@ import '../../../global.css'
 import type { ComponentPropsWithRef, ElementType } from "react"
 
 export type DecoratorProps<T extends ElementType> = ComponentPropsWithRef<T> & {
-    as?: ElementType,
+    as?: T,
     children: React.ReactNode,
     decoration: React.ReactNode,
     decorationContainerStyle?: React.CSSProperties,
