@@ -1,5 +1,5 @@
 import '../../../global.css'
-import type { PopoverPlacement } from '../../Utils/Popover/Popover'
+import type { PopoverPlacement } from '../Popover'
 
 export interface TooltipProps {
     placement: PopoverPlacement,

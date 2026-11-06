@@ -1,9 +1,10 @@
 import '../../../global.css'
 import { useEffect, useRef, useState } from "react"
-import Popover, { type PopoverPlacement } from "../../Utils/Popover/Popover"
+import type { PopoverPlacement } from '../Popover'
 import PopoverTransition from '../Popover/PopoverTransition'
 import Tooltip from "./Tooltip"
 import { createPortal } from "react-dom"
+import PositionedOverlay from '../../Utils/PositionedOverlay/PositionedOverlay'
 
 export interface TooltipWrapperProps {
     children: (ref: React.RefObject<Element | null>) => React.ReactNode,
@@ -93,9 +94,15 @@ const TooltipWrapper: React.FC<TooltipWrapperProps> = ({
             {createPortal((
                 <PopoverTransition in={isShow} placement={placement}>
                     {(ref, style) => (
-                        <Popover ref={node => { ref.current = node }} style={style} placement={placement} anchorPoint={anchorPoint} offset={offset}>
+                        <PositionedOverlay
+                            ref={node => { ref.current = node }}
+                            style={style}
+                            placement={placement}
+                            pos={{ x: anchorPoint.left, y: anchorPoint.top }}
+                            offset={offset}
+                        >
                             <Tooltip placement={placement} text={text} noArrow={noArrow}/>
-                        </Popover>
+                        </PositionedOverlay>
                     )}
                 </PopoverTransition>
             ), renderTarget)}

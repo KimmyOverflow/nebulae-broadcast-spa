@@ -3,7 +3,7 @@ import '../../../global.css'
 import SelectBox from './SelectBox'
 import SelectMenu from './SelectMenu'
 import PopoverTransition from '../../DataDisplay/Popover/PopoverTransition'
-import Popover from '../../Utils/Popover/Popover'
+import PositionedOverlay from '../../Utils/PositionedOverlay/PositionedOverlay'
 import { type MouseEventHandler, useRef, useState } from 'react'
 import useOutsideClick from '../../../hooks/useOutsideClick'
 
@@ -60,18 +60,18 @@ const Select: React.FC<SelectProps> = ({
             {createPortal((
                 <PopoverTransition in={focused} placement='bottom_start'>
                     {(ref, style) => (
-                        <Popover
+                        <PositionedOverlay
                             ref={node => {
                                 popoverRef.current = node
                                 ref.current = node
                             }}
                             placement='bottom_start'
-                            anchorPoint={anchorPoint.current}
+                            pos={{ x: anchorPoint.current.left, y: anchorPoint.current.top }}
                             offset={8}
                             style={style}
                         >
                             <SelectMenu selected={selected} options={options} onSelectChange={handleSelectChange} style={{minWidth: selectBoxWidth.current}}/>
-                        </Popover>
+                        </PositionedOverlay>
                     )}
                 </PopoverTransition>
             ), renderTarget)}
