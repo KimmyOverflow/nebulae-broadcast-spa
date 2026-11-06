@@ -1,3 +1,5 @@
+import './style.css'
+
 export { default as PopoverTransition } from './PopoverTransition'
 export { AnchoredPopover } from './AnchoredPopover'
 
@@ -16,3 +18,4 @@ export type PopoverPlacement =
     | 'bottom'
     | 'left'
     | 'right'
+    
