@@ -1,36 +1,27 @@
-import { createContext, type CSSProperties, type RefObject, useRef } from "react";
+import { type CSSProperties, type RefObject, useRef } from "react";
 import { Transition, type TransitionStatus } from "react-transition-group";
-import { type PopoverPlacement } from "./Popover";
+import type { PopoverPlacement } from ".";
 
-export const PopoverTransitionContext = createContext<CSSProperties>({})
-export const PopoverRefContext = createContext<RefObject<HTMLDivElement | null>>({current: null})
-
-export interface PopoverTransitionProviderProps {
+export interface PopoverTransitionProps {
     in: boolean,
     placement: PopoverPlacement,
-    children: React.ReactNode,
+    children: (ref: RefObject<HTMLElement | null>, transitionStyle: CSSProperties) => React.ReactNode,
 }
 
-const PopoverTransitionProvider: React.FC<PopoverTransitionProviderProps> = ({
+const PopoverTransition: React.FC<PopoverTransitionProps> = ({
     in: inProp,
     placement,
     children
 }) => {
-    const nodeRef = useRef<HTMLDivElement>(null)
+    const nodeRef = useRef<HTMLElement>(null)
     return (
         <Transition nodeRef={nodeRef} in={inProp} timeout={300} unmountOnExit>
-            {transitionStatus => (
-                <PopoverTransitionContext.Provider value={getPopoverTransitionStyles(placement, transitionStatus)}>
-                    <PopoverRefContext.Provider value={nodeRef}>
-                        {children}
-                    </PopoverRefContext.Provider>
-                </PopoverTransitionContext.Provider>
-            )}
+            {transitionStatus => children(nodeRef, getPopoverTransitionStyles(placement, transitionStatus))}
         </Transition>
     )
 }
 
-export default PopoverTransitionProvider
+export default PopoverTransition
 
 const getPopoverTransitionStyles = (popoverPlacement: PopoverPlacement, transitionStatus: TransitionStatus): CSSProperties => {
     const baseStyle = {

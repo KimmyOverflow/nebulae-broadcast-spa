@@ -9,7 +9,7 @@ export { Select, SelectBox, SelectMenu } from './components/Inputs/Select'
 export { TextField } from './components/Inputs/TextField'
 export { Toggle } from './components/Inputs/Toggle'
 export { Mist } from './components/Utils/Mist'
-export { Popover, PopoverTransitionProvider } from './components/Utils/Popover'
+export { Popover } from './components/Utils/Popover'
 export { RippleWrapper, RipplePool, useRipple } from './components/Utils/Ripple';
 export { Decorator } from './components/Utils/Decorator';
 
@@ -23,6 +23,6 @@ export type { ButtonProps, VariantedButtonProps } from './components/Inputs/Butt
 export type { SelectProps, SelectBoxProps, SelectMenuProps } from './components/Inputs/Select'
 export type { ToggleProps } from './components/Inputs/Toggle'
 export type { MistProps } from './components/Utils/Mist'
-export type { PopoverProps, PopoverTransitionProviderProps } from './components/Utils/Popover'
+export type { PopoverProps } from './components/Utils/Popover'
 export type { RipplePoolProps, RippleWrapperProps, RippleData, RippleSettings } from './components/Utils/Ripple'
 export type { DecoratorProps } from './components/Utils/Decorator'

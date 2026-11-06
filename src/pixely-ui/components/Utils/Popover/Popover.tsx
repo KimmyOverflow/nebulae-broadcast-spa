@@ -1,6 +1,5 @@
 import '../../../global.css'
-import { useContext, useLayoutEffect, useRef, useState } from 'react'
-import { PopoverRefContext, PopoverTransitionContext } from './PopoverTransitionProvider'
+import { useLayoutEffect, useRef, useState } from 'react'
 import useMergeRefs from '../../../hooks/useMergeRefs'
 
 export type PopoverPlacement = 'top_start' | 'top_end' | 'bottom_start' | 'bottom_end' | 'left_start' | 'left_end' | 'right_start' | 'right_end' | 'top' | 'bottom' | 'left' | 'right'
@@ -25,10 +24,8 @@ const Popover: React.FC<PopoverProps> = ({
     ...divProps
 }: PopoverProps) => {
     const internalRef = useRef<HTMLDivElement>(null)
-    const contextRef = useContext(PopoverRefContext)
 
-    const mergedRef = useMergeRefs(internalRef, contextRef, ref ?? null)
-    const transitionStyles = useContext(PopoverTransitionContext)
+    const mergedRef = useMergeRefs(internalRef, ref ?? null)
     
     const [position, setPosition] = useState({ top: 0, left: 0 })
 
@@ -103,7 +100,6 @@ const Popover: React.FC<PopoverProps> = ({
             style={{
                 top: position.top,
                 left: position.left,
-                ...transitionStyles,
                 ...style
             }}
             {...divProps}

@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom'
 import '../../../global.css'
 import SelectBox from './SelectBox'
 import SelectMenu from './SelectMenu'
-import PopoverTransitionProvider from '../../Utils/Popover/PopoverTransitionProvider'
+import PopoverTransition from '../../DataDisplay/Popover/PopoverTransition'
 import Popover from '../../Utils/Popover/Popover'
 import { type MouseEventHandler, useRef, useState } from 'react'
 import useOutsideClick from '../../../hooks/useOutsideClick'
@@ -58,11 +58,22 @@ const Select: React.FC<SelectProps> = ({
                 onMouseDown={handleSelectBoxMouseDown}
             />
             {createPortal((
-                <PopoverTransitionProvider in={focused} placement='bottom_start'>
-                    <Popover ref={popoverRef} placement='bottom_start' anchorPoint={anchorPoint.current} offset={8}>
-                        <SelectMenu selected={selected} options={options} onSelectChange={handleSelectChange} style={{minWidth: selectBoxWidth.current}}/>
-                    </Popover>
-                </PopoverTransitionProvider>
+                <PopoverTransition in={focused} placement='bottom_start'>
+                    {(ref, style) => (
+                        <Popover
+                            ref={node => {
+                                popoverRef.current = node
+                                ref.current = node
+                            }}
+                            placement='bottom_start'
+                            anchorPoint={anchorPoint.current}
+                            offset={8}
+                            style={style}
+                        >
+                            <SelectMenu selected={selected} options={options} onSelectChange={handleSelectChange} style={{minWidth: selectBoxWidth.current}}/>
+                        </Popover>
+                    )}
+                </PopoverTransition>
             ), renderTarget)}
         </>
     )

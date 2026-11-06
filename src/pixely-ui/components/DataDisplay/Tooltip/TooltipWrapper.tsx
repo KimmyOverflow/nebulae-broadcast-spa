@@ -1,7 +1,7 @@
 import '../../../global.css'
 import { useEffect, useRef, useState } from "react"
 import Popover, { type PopoverPlacement } from "../../Utils/Popover/Popover"
-import PopoverTransitionProvider from "../../Utils/Popover/PopoverTransitionProvider"
+import PopoverTransition from '../Popover/PopoverTransition'
 import Tooltip from "./Tooltip"
 import { createPortal } from "react-dom"
 
@@ -91,11 +91,13 @@ const TooltipWrapper: React.FC<TooltipWrapperProps> = ({
     return (
         <>
             {createPortal((
-                <PopoverTransitionProvider in={isShow} placement={placement}>
-                    <Popover placement={placement} anchorPoint={anchorPoint} offset={offset}>
-                        <Tooltip placement={placement} text={text} noArrow={noArrow}/>
-                    </Popover>
-                </PopoverTransitionProvider>
+                <PopoverTransition in={isShow} placement={placement}>
+                    {(ref, style) => (
+                        <Popover ref={node => { ref.current = node }} style={style} placement={placement} anchorPoint={anchorPoint} offset={offset}>
+                            <Tooltip placement={placement} text={text} noArrow={noArrow}/>
+                        </Popover>
+                    )}
+                </PopoverTransition>
             ), renderTarget)}
             {children(childRef)}
         </>
