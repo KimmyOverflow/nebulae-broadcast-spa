@@ -3,20 +3,20 @@ import '../../../global.css'
 import type { PopoverPlacement } from '.'
 
 export interface PopoverBubbleProps {
-    color?: CSSProperties['color']
+    bubbleColor?: CSSProperties['color'],
     placement?: PopoverPlacement,
     children?: React.ReactNode
 }
 
 export const PopoverBubble: React.FC<PopoverBubbleProps> = ({
-    color = 'white',
+    bubbleColor = 'white',
     placement = 'top',
     children
 }: PopoverBubbleProps) => {
     let containerStyle: React.CSSProperties = {}
     let svgStyle: React.CSSProperties = {}
 
-    containerStyle.color = color
+    svgStyle.color = bubbleColor
     switch(placement) {
         case 'top':
         case 'top_start':
@@ -68,7 +68,7 @@ export const PopoverBubble: React.FC<PopoverBubbleProps> = ({
 
     return (
         <div className='PixelyUI PixelyPopoverBubble-Container' style={containerStyle}>
-            <div className='PixelyUI PixelyPopoverBubble-Textbox'>
+            <div className='PixelyUI PixelyPopoverBubble-Content' style={{ backgroundColor: bubbleColor }}>
                 {children}
             </div>
             <div className='PixelyUI PixelyPopoverBubble-ArrowContainer'>
