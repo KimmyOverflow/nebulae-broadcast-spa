@@ -5,12 +5,14 @@ import type { PopoverPlacement } from '.'
 export interface PopoverBubbleProps {
     bubbleColor?: CSSProperties['color'],
     placement?: PopoverPlacement,
+    arrowOffset?: number,
     children?: React.ReactNode
 }
 
 export const PopoverBubble: React.FC<PopoverBubbleProps> = ({
     bubbleColor = 'white',
     placement = 'top',
+    arrowOffset = 0,
     children
 }: PopoverBubbleProps) => {
     let containerStyle: React.CSSProperties = {}
@@ -48,19 +50,19 @@ export const PopoverBubble: React.FC<PopoverBubbleProps> = ({
     switch(placement) {
         case 'top_start':
         case 'bottom_start':
-            svgStyle.marginLeft = '-8px'
+            svgStyle.marginLeft = `${-8 + arrowOffset}px`
             break
         case 'top_end':
         case 'bottom_end':
-            svgStyle.marginRight = '-8px'
+            svgStyle.marginRight = `${-8 + arrowOffset}px`
             break
         case 'left_start':
         case 'right_start':
-            svgStyle.marginTop = '-8px'
+            svgStyle.marginTop = `${-8 + arrowOffset}px`
             break
         case 'left_end':
         case 'right_end':
-            svgStyle.marginBottom = '-8px'
+            svgStyle.marginBottom = `${-8 + arrowOffset}px`
             break
         default:
             break
