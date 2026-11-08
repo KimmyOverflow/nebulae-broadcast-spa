@@ -24,16 +24,14 @@ const PopoverTransition: React.FC<PopoverTransitionProps> = ({
 export default PopoverTransition
 
 const getPopoverTransitionStyles = (popoverPlacement: PopoverPlacement, transitionStatus: TransitionStatus): CSSProperties => {
-    const baseStyle = {
-        transition: 'transform .3s cubic-bezier(0, .8, .2, 1), opacity .3s cubic-bezier(0, .8, .2, 1)'
-    }
+    const transition = 'transform .3s cubic-bezier(0, .8, .2, 1), opacity .3s cubic-bezier(0, .8, .2, 1)'
 
     const placement = popoverPlacement.split('_')[0] as 'top' | 'bottom' | 'left' | 'right'
     
     const transitionStyles: { [key in TransitionStatus]: React.CSSProperties } = {
-        entering: { opacity: 1 },
+        entering: { opacity: 1, transition },
         entered: { opacity: 1 },
-        exiting: { opacity: 0 },
+        exiting: { opacity: 0, transition },
         exited: { opacity: 0 },
         unmounted: { opacity: 0 }
     }
@@ -41,7 +39,6 @@ const getPopoverTransitionStyles = (popoverPlacement: PopoverPlacement, transiti
     switch (placement) {
         case 'top':
             return {
-                ...baseStyle,
                 ...transitionStyles[transitionStatus],
                 transform: transitionStatus === 'entered' || transitionStatus === 'entering'
                     ? 'translateY(0)'
@@ -49,7 +46,6 @@ const getPopoverTransitionStyles = (popoverPlacement: PopoverPlacement, transiti
             }
         case 'bottom':
             return {
-                ...baseStyle,
                 ...transitionStyles[transitionStatus],
                 transform: transitionStatus === 'entered' || transitionStatus === 'entering'
                     ? 'translateY(0)'
@@ -57,7 +53,6 @@ const getPopoverTransitionStyles = (popoverPlacement: PopoverPlacement, transiti
             }
         case 'left':
             return {
-                ...baseStyle,
                 ...transitionStyles[transitionStatus],
                 transform: transitionStatus === 'entered' || transitionStatus === 'entering'
                     ? 'translateX(0)'
@@ -65,13 +60,12 @@ const getPopoverTransitionStyles = (popoverPlacement: PopoverPlacement, transiti
             }
         case 'right':
             return {
-                ...baseStyle,
                 ...transitionStyles[transitionStatus],
                 transform: transitionStatus === 'entered' || transitionStatus === 'entering'
                     ? 'translateX(0)'
                     : 'translateX(-4px)'
             }
         default:
-            return baseStyle
+            return {}
     }
 }

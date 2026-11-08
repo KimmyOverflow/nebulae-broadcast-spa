@@ -3,20 +3,22 @@ import '../../../global.css'
 import type { PopoverPlacement } from '.'
 
 export interface PopoverBubbleProps {
-    color?: CSSProperties['color']
+    bubbleColor?: CSSProperties['color'],
     placement?: PopoverPlacement,
+    arrowOffset?: number,
     children?: React.ReactNode
 }
 
 export const PopoverBubble: React.FC<PopoverBubbleProps> = ({
-    color = 'white',
+    bubbleColor = 'white',
     placement = 'top',
+    arrowOffset = 0,
     children
 }: PopoverBubbleProps) => {
     let containerStyle: React.CSSProperties = {}
     let svgStyle: React.CSSProperties = {}
 
-    containerStyle.color = color
+    svgStyle.color = bubbleColor
     switch(placement) {
         case 'top':
         case 'top_start':
@@ -48,19 +50,19 @@ export const PopoverBubble: React.FC<PopoverBubbleProps> = ({
     switch(placement) {
         case 'top_start':
         case 'bottom_start':
-            svgStyle.marginLeft = '-8px'
+            svgStyle.marginLeft = `${-8 + arrowOffset}px`
             break
         case 'top_end':
         case 'bottom_end':
-            svgStyle.marginRight = '-8px'
+            svgStyle.marginRight = `${-8 + arrowOffset}px`
             break
         case 'left_start':
         case 'right_start':
-            svgStyle.marginTop = '-8px'
+            svgStyle.marginTop = `${-8 + arrowOffset}px`
             break
         case 'left_end':
         case 'right_end':
-            svgStyle.marginBottom = '-8px'
+            svgStyle.marginBottom = `${-8 + arrowOffset}px`
             break
         default:
             break
@@ -68,7 +70,7 @@ export const PopoverBubble: React.FC<PopoverBubbleProps> = ({
 
     return (
         <div className='PixelyUI PixelyPopoverBubble-Container' style={containerStyle}>
-            <div className='PixelyUI PixelyPopoverBubble-Textbox'>
+            <div className='PixelyUI PixelyPopoverBubble-Content' style={{ backgroundColor: bubbleColor }}>
                 {children}
             </div>
             <div className='PixelyUI PixelyPopoverBubble-ArrowContainer'>
