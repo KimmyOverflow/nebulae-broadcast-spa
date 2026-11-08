@@ -1,7 +1,7 @@
 import '../../../global.css'
 import type { PopoverPlacement } from '../../DataDisplay/Popover'
 import './style.css'
-import { useRef, type ElementType } from 'react'
+import type { ElementType } from 'react'
 
 export type PositionedOverlayPlacement = PopoverPlacement | 'center'
 
@@ -15,6 +15,58 @@ export type PositionedOverlayProps<T extends ElementType> = React.ComponentProps
     offset?: number,
 }
 
+// pos 是 anchor 上的对齐点（视口坐标）。translate 的百分比以元素自身 border box 为参照，
+// 所以这里不需要测量元素尺寸，内容尺寸变化时浏览器会自动重新解析。
+function calculateTranslate(
+    pos: { x: number, y: number },
+    placement: PositionedOverlayPlacement,
+    offset: number
+) {
+    const { x, y } = pos
+    const nx = `${x}px`
+    const ny = `${y}px`
+    // 分别表示「减自身宽/高」「加间距」
+    const xHalf = `calc(${nx} - 50%)`
+    const xFull = `calc(${nx} - 100%)`
+    const yHalf = `calc(${ny} - 50%)`
+    const yFull = `calc(${ny} - 100%)`
+    const yBelow = `calc(${ny} + ${offset}px)`
+    const yAbove = `calc(${ny} - 100% - ${offset}px)`
+    const xAfter = `calc(${nx} + ${offset}px)`
+    const xBefore = `calc(${nx} - 100% - ${offset}px)`
+
+    switch (placement) {
+        case 'top':
+            return `${xHalf} ${yAbove}`
+        case 'bottom':
+            return `${xHalf} ${yBelow}`
+        case 'left':
+            return `${xBefore} ${yHalf}`
+        case 'right':
+            return `${xAfter} ${yHalf}`
+        case 'top_start':
+            return `${nx} ${yAbove}`
+        case 'top_end':
+            return `${xFull} ${yAbove}`
+        case 'bottom_start':
+            return `${nx} ${yBelow}`
+        case 'bottom_end':
+            return `${xFull} ${yBelow}`
+        case 'left_start':
+            return `${xBefore} ${ny}`
+        case 'left_end':
+            return `${xBefore} ${yFull}`
+        case 'right_start':
+            return `${xAfter} ${ny}`
+        case 'right_end':
+            return `${xAfter} ${yFull}`
+        case 'center':
+            return `${xHalf} ${yHalf}`
+        default:
+            return ''
+    }
+}
+
 const PositionedOverlay = <T extends ElementType = 'div'>({
     as,
     pos,
@@ -26,83 +78,14 @@ const PositionedOverlay = <T extends ElementType = 'div'>({
     ref: forwardedRef,
     ...elementProps
 }: PositionedOverlayProps<T>) => {
-    const ref = useRef<HTMLElement>(null)
-
-    const calculateAbsolutePosition = (pos: { x: number, y: number }, placement: PositionedOverlayPlacement) => {
-        let top = 0, left = 0
-        if (!ref.current) return { top, left }
-
-        const popover = ref.current
-        const { width, height } = popover.getBoundingClientRect()
-
-        switch (placement) {
-            case 'top':
-                top = pos.y - height - offset
-                left = pos.x - width / 2
-                break
-            case 'bottom':
-                top = pos.y + offset
-                left = pos.x - width / 2
-                break
-            case 'left':
-                top = pos.y - height / 2
-                left = pos.x - width - offset
-                break
-            case 'right':
-                top = pos.y - height / 2
-                left = pos.x + offset
-                break
-            case 'top_start':
-                top = pos.y - height - offset
-                break
-            case 'top_end':
-                top = pos.y - height - offset
-                left = pos.x - width
-                break
-            case 'bottom_start':
-                top = pos.y + offset
-                break
-            case 'bottom_end':
-                top = pos.y + offset
-                left = pos.x - width
-                break
-            case 'left_start':
-                left = pos.x - width - offset
-                break
-            case 'left_end':
-                top = pos.y - height
-                left = pos.x - width - offset
-                break
-            case 'right_start':
-                left = pos.x + offset
-                break
-            case 'right_end':
-                top = pos.y - height
-                left = pos.x + offset
-                break
-            case 'center':
-                top = pos.y - height / 2
-                left = pos.x - width / 2
-                break
-        }
-
-        return { top, left }
-    }
-
-    const absolutePosition = calculateAbsolutePosition(pos, placement)
     const Element = as || 'div'
 
     return (
         <Element
-            ref={(node: HTMLElement | null) => {
-                ref.current = node
-                if (!forwardedRef) return
-                if (typeof forwardedRef === 'function') forwardedRef(node)
-                forwardedRef.current = node
-            }}
+            ref={forwardedRef}
             className={`PixelyUI PixelyPositionedOverlay${className ? ` ${className}` : ''}`}
             style={{
-                ...absolutePosition,
+                translate: calculateTranslate(pos, placement, offset),
                 ...style
             }}
             {...elementProps}
