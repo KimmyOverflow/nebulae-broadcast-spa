@@ -1,17 +1,18 @@
-import { createRef, useEffect, useRef, useState } from "react"
+import { createRef, useEffect, useRef, useState, type ChangeEventHandler, type ComponentPropsWithoutRef, type FocusEventHandler, type Ref, type RefObject } from "react"
 import { Decorator } from "../../Utils/Decorator"
 import { RipplePool } from "../../Utils/Ripple"
 
-export interface TextFieldProps {
+export interface TextFieldProps extends Omit<ComponentPropsWithoutRef<'input'>, 'onChange'> {
     name?: string,
     required?: boolean,
     type?: React.HTMLInputTypeAttribute,
     placeholder?: string
     defaultValue?: string
     rippleColor?: string
-    onChange?: (value: string) => void
     startSlot?: React.ReactNode
     endSlot?: React.ReactNode
+    ref?: Ref<HTMLDivElement>
+    onChange?: (value: string) => void
 }
 
 const TextField: React.FC<TextFieldProps> = ({
@@ -23,7 +24,11 @@ const TextField: React.FC<TextFieldProps> = ({
     rippleColor = 'rgba(255,255,255,.8)',
     startSlot,
     endSlot,
+    ref: forwardedRef,
+    onFocus,
+    onBlur,
     onChange,
+    ...inputProps
 }: TextFieldProps) => {
     useEffect(() => {
         if (defaultValue) {
@@ -33,14 +38,26 @@ const TextField: React.FC<TextFieldProps> = ({
     const inputRef = useRef<HTMLInputElement>(null)
     const decoratorRef = useRef<HTMLDivElement>(null)
     const [focus, setFocus] = useState<DOMRect | false>(false)
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (ev) => {
+    const handleChange: ChangeEventHandler<HTMLInputElement> = (ev) => {
         onChange?.(ev.target.value)
+    }
+    const handleFocus: FocusEventHandler<HTMLInputElement> = (ev) => {
+        onFocus?.(ev)
+        setFocus(decoratorRef.current!.getBoundingClientRect())
+    }
+    const handleBlur: FocusEventHandler<HTMLInputElement> = (ev) => {
+        onBlur?.(ev)
+        setFocus(false)
     }
 
     return (
         <Decorator<'div'>
             as='div'
-            ref={decoratorRef}
+            ref={node => {
+                decoratorRef.current = node
+                if (typeof forwardedRef === 'function') forwardedRef(node)
+                else if (forwardedRef) forwardedRef.current = node
+            }}
             decoration={(
                 <RipplePool
                     ripples={focus ? [{
@@ -68,8 +85,9 @@ const TextField: React.FC<TextFieldProps> = ({
                 className='PixelyUI PixelyTextField-Input'
                 ref={inputRef}
                 type={type}
-                onFocus={() => setFocus(decoratorRef.current!.getBoundingClientRect())}
-                onBlur={() => setFocus(false)}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+                {...inputProps}
             />
             {endSlot}
         </Decorator>
