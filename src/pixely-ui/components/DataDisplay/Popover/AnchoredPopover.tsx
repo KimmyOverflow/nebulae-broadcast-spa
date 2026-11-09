@@ -5,9 +5,9 @@ import PopoverTransition from './PopoverTransition'
 import PositionedOverlay from '../../Utils/PositionedOverlay/PositionedOverlay'
 import { useMeasure } from '../../../hooks/useMeasure'
 import PopoverBubble from './PopoverBubble'
-import type { CSSProperties } from 'react'
+import type { ComponentPropsWithRef, CSSProperties } from 'react'
 
-export interface AnchoredPopoverProps {
+export interface AnchoredPopoverProps extends Omit<ComponentPropsWithRef<'div'>, 'content' | 'children'> {
     children: (anchorRef: React.RefObject<Element | null>) => React.ReactNode,
     content?: React.ReactNode,
     bubbleColor?: CSSProperties['color']
@@ -24,7 +24,8 @@ export const AnchoredPopover: React.FC<AnchoredPopoverProps> = ({
     renderTarget = document.documentElement,
     placement = 'top',
     offset = 8,
-    in: inProp = false
+    in: inProp = false,
+    ...divProps
 }: AnchoredPopoverProps) => {
     const [measureTargetRef, result] = useMeasure(placement)
     let arrowOffset = 0
@@ -56,6 +57,7 @@ export const AnchoredPopover: React.FC<AnchoredPopoverProps> = ({
                             placement={placement}
                             pos={result?.anchorPoint ?? { x: 0, y: 0}}
                             offset={offset}
+                            {...divProps}
                         >
                             <PopoverBubble
                                 bubbleColor={bubbleColor}
